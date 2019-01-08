@@ -16,7 +16,8 @@ class AddressSearchResult extends Component {
       onUserInput,
       userInput,
       searchResult,
-      onFinishBtn
+      onFinishBtn,
+      onSubmitBtn
     } = this.props;
     console.log(searchResult);
     return (
@@ -42,6 +43,7 @@ class AddressSearchResult extends Component {
                 className={cx("addressSearchButton")}
                 onClick={() => {
                   getAddress(userInput);
+                  onSubmitBtn();
                 }}
               >
                 <MagnifyingGlass />

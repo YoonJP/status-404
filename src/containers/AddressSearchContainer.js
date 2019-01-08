@@ -36,9 +36,16 @@ class AddressSearchContainer extends Component {
   };
 
   handleSubmitBtn = () => {
-    this.setState({
-      page: "address-search-result"
-    });
+    const { userInput, page } = this.state;
+    if (userInput.length === 0) {
+      alert("검색어를 입력하세요");
+    } else if (userInput.length === 0 && page === "address-search-page") {
+      alert("검색어를 입력하세요");
+    } else {
+      this.setState({
+        page: "address-search-result"
+      });
+    }
   };
 
   getAddress = async userInput => {
@@ -123,6 +130,7 @@ class AddressSearchContainer extends Component {
             <AddressSearchResult
               searchResult={searchResult}
               userInput={userInput}
+              onSubmitBtn={() => this.handleSubmitBtn()}
               onUserInput={e => this.handleUserInput(e)}
               onBackBtn={index => this.handleBackBtn(index)}
               onFinishBtn={e => this.handleFinishBtn(e)}

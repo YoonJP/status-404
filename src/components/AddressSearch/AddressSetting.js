@@ -158,8 +158,8 @@ export default class AddressSetting extends Component {
   render() {
     const { onBackBtn, onAddressSetting } = this.props;
     const { address, roadAddress, detailAddr } = this.state;
-    console.log("도로명 주소", roadAddress);
-    console.log("지번 주소", address);
+    // console.log("도로명 주소", roadAddress);
+    // console.log("지번 주소", address);
     return (
       <>
         <div className={cx("map_wrap")}>

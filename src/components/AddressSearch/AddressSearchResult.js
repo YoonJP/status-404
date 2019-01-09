@@ -19,7 +19,7 @@ class AddressSearchResult extends Component {
       onFinishBtn,
       onSubmitBtn
     } = this.props;
-    console.log(searchResult);
+    // console.log(searchResult);
     return (
       <>
         <div className={cx("container")}>

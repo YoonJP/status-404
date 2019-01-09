@@ -80,7 +80,7 @@ class AddressSearchContainer extends Component {
     this.setState({
       page: "address-search"
     });
-    console.log(recentAddress);
+    // console.log(recentAddress);
   };
 
   handleKakaoView = () => {

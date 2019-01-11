@@ -11,12 +11,16 @@ import AddressSetting from "../components/AddressSearch/AddressSetting";
 class AddressSearchContainer extends Component {
   constructor(props) {
     super(props);
+    let addressHistory = [];
+    if (localStorage.getItem("address")) {
+      addressHistory = JSON.parse(localStorage.getItem("address"));
+    }
 
     this.state = {
       page: "address-search",
       searchResult: [],
       userInput: "",
-      recentAddress: []
+      recentAddress: addressHistory
     };
 
     // loading: false
@@ -76,7 +80,8 @@ class AddressSearchContainer extends Component {
   handleFinishBtn = id => {
     const { searchResult, recentAddress } = this.state;
     const index = searchResult.findIndex(item => item.id === id);
-    this.state.recentAddress.push(searchResult[index]);
+    this.state.recentAddress.unshift(searchResult[index]);
+    localStorage.setItem("address", JSON.stringify(recentAddress));
     this.setState({
       page: "address-search"
     });

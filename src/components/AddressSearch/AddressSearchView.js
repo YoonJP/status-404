@@ -36,7 +36,13 @@ class AddressSearchView extends Component {
               지번, 도로명, 건물명을
               <p>입력하세요</p>
             </h1>
-            <div className={cx("addressSearchForm")}>
+            <form
+              className={cx("addressSearchForm")}
+              onSubmit={e => {
+                e.preventDefault();
+                onSubmitBtn(e);
+              }}
+            >
               <input
                 autoComplete="off"
                 onChange={onUserInput}
@@ -51,12 +57,11 @@ class AddressSearchView extends Component {
                 className={cx("addressSearchButton")}
                 onClick={() => {
                   getAddress(userInput);
-                  onSubmitBtn();
                 }}
               >
                 <MagnifyingGlass />
               </button>
-            </div>
+            </form>
             <button
               // onClick={() => onKakaoView()}
               onClick={() => onAddressSetting()}

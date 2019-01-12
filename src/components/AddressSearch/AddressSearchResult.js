@@ -19,7 +19,6 @@ class AddressSearchResult extends Component {
       onFinishBtn,
       onSubmitBtn
     } = this.props;
-    // console.log(searchResult);
     return (
       <>
         <div className={cx("container")}>
@@ -28,7 +27,13 @@ class AddressSearchResult extends Component {
               <BackBtn />
             </button>
             <h1 className={cx("header")}>배달 받을 주소</h1>
-            <div className={cx("addressSearchForm")}>
+            <form
+              className={cx("addressSearchForm")}
+              onSubmit={e => {
+                e.preventDefault();
+                onSubmitBtn(e);
+              }}
+            >
               <input
                 autoComplete="off"
                 onChange={onUserInput}
@@ -43,12 +48,11 @@ class AddressSearchResult extends Component {
                 className={cx("addressSearchButton")}
                 onClick={() => {
                   getAddress(userInput);
-                  onSubmitBtn();
                 }}
               >
                 <MagnifyingGlass />
               </button>
-            </div>
+            </form>
           </div>
           <div className={cx("listContainer")}>
             <ul className={cx("recentAddress")}>

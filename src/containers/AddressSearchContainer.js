@@ -54,9 +54,7 @@ class AddressSearchContainer extends Component {
 
   getAddress = async userInput => {
     const { data } = await kakaoAPI.get(
-      // 1. 주소로 검색
-      // "https://dapi.kakao.com/v2/local/search/address.json",
-      // 2. 키워드(지번, 도로명, 건물명)로 검색, 설정값: 전국 단위(기준이되는 위치 설정은 아직 미구현)
+      // 키워드(지번, 도로명, 건물명)로 검색, 설정값: 전국 단위(기준이되는 위치 설정은 아직 미구현)
       "https://dapi.kakao.com/v2/local/search/keyword.json",
       {
         params: {
@@ -85,7 +83,6 @@ class AddressSearchContainer extends Component {
     this.setState({
       page: "address-search"
     });
-    // console.log(recentAddress);
   };
 
   handleKakaoView = () => {
@@ -93,23 +90,20 @@ class AddressSearchContainer extends Component {
       page: "kakao"
     });
   };
+
   handleAddressSetting = () => {
     this.setState({
       page: "address-setting"
     });
   };
-  handleDeleteBtn = index => {
-    // const { recentAddress } = this.props;
-    // console.log(recentAddress[index]);
-    this.state.recentAddress.splice(index, 1);
-  };
 
-  // FIXME: AddressSetting compnt.에서 refresh button의 역할이 안됨
-  // handleRefreshBtn = () => {
-  //   this.setState({
-  //     page: "address-setting"
-  //   });
-  // };
+  handleDeleteBtn = index => {
+    const { recentAddress } = this.state;
+    console.log(recentAddress);
+    this.state.recentAddress.splice(index, 1);
+    localStorage.setItem("address", JSON.stringify(recentAddress));
+    this.setState({});
+  };
 
   render() {
     const { searchResult, userInput, recentAddress } = this.state;
@@ -128,7 +122,7 @@ class AddressSearchContainer extends Component {
               address={address}
               onKakaoView={this.handleKakaoView}
               userInput={userInput}
-              onDeleteBtn={() => this.handleDeleteBtn()}
+              onDeleteBtn={e => this.handleDeleteBtn(e)}
               onAddressSetting={this.handleAddressSetting}
             />
           ) : this.state.page === "address-search-result" ? (

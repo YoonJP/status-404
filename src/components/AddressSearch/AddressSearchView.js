@@ -85,7 +85,7 @@ class AddressSearchView extends Component {
                       )}
                     </div>
                     <button
-                      onClick={onDeleteBtn}
+                      onClick={() => onDeleteBtn(index)}
                       className={cx("deleteButton")}
                     >
                       <Ex />
